@@ -6,9 +6,6 @@
 
 int main(int argc, char **argv)
 {
-	using namespace std;
-	using namespace cgicc;
-
 	if (argc < 2) exit(1);
 
 	FCGX_Request request;
@@ -19,12 +16,12 @@ int main(int argc, char **argv)
 	{
 		try
 		{
-			FCgiIO io(request);
-			Cgicc cgi(&io);
+			cgicc::FCgiIO io(request);
+			cgicc::Cgicc cgi(&io);
 
-			HTTPResponseHeader resp("Status:", 200, "OK");
+			cgicc::HTTPResponseHeader resp("Status:", 200, "OK");
 			resp.addHeader("Content-Type", "text/html");
-			io << "<html><title>CGICC TEST</title><body>test</body></html>";
+			io << "<html><head><title>FastCGICC</title></head><body><h1>FastCGICC</h1></body></html>";
 		} 
 		catch (std::exception const &e)
 		{
